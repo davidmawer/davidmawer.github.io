@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Omnivore Test 2</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+    <script src='leaflet.hotline.js'></script>
+    <script src='Leaflet.MultiOptionsPolyline.js'></script>
+    <script src="leaflet-providers.js"></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+
+    <div id='map' class='dark'></div>
+
+    <script>
+        
+        L.mapbox.accessToken = 'pk.eyJ1IjoiZG1hd2VyIiwiYSI6ImNqYW1wYWl5cTM3ZGEzM3BiNGpodWxvZzQifQ.Ct1wT5beJEMFV1MQm2sIkg';
+
+        var map = L.map('map');
+        
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+}).addTo(map);
+        
+//        var map = L.map('map').setView([51.505, -0.09], 13);
+//
+//L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+//    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+//}).addTo(map);
+//
+//L.marker([51.5, -0.09]).addTo(map)
+//    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+//    .openPopup();
+//        
+//        map.on('load', function() {
+
+        // omnivore will AJAX-request this file behind the scenes and parse it:
+        // note that there are considerations:
+        // - The file must either be on the same domain as the page that requests it,
+        //   or both the server it is requested from and the user's browser must
+        //   support CORS.
+
+
+
+        //Original GPS Track Layer:
+        //        var runLayer = omnivore.gpx('traverse.gpx')
+        //            .on('ready', function() {
+        //                map.fitBounds(runLayer.getBounds());
+        //            })
+        //            .addTo(map);
+        //
+
+        //New, Styled GPS Track Layer:
+
+
+        var hikeStyle = {
+            "color": "#00ccff",
+            "weight": 5,
+            "opacity": .8,
+        };
+
+        var rideStyle = {
+            "color": "#00ff00",
+            "weight": 5,
+            "opacity": .8,
+        }
+
+        var runStyle = {
+            "color": "#ff6600",
+            "weight": 5,
+            "opacity": .8,
+        }
+
+
+        customLayerRun = L.geoJson(null, {
+            style: runStyle
+        }).addTo(map);
+
+        customLayerRide = L.geoJson(null, {
+            style: rideStyle
+        }).addTo(map);
+
+        customLayerHike = L.geoJson(null, {
+            style: hikeStyle
+        }).addTo(map);
+    </script>
+
+    <script src="runs.js"></script>
+    <script src="rides.js"></script>
+    <script src="hikes.js"></script>
+
+
+</body>
+
+
+<!--https://www.mapbox.com/mapbox-gl-js/example/toggle-layers/-->
+
+</html>

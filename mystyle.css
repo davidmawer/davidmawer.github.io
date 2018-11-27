@@ -1,0 +1,13 @@
+ #map {
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     width: 100%;
+ }
+
+.divicon {
+/*    mix-blend-mode: screen;*/
+    color:aqua;
+    width: 5px;
+    height: 5px;
+}
